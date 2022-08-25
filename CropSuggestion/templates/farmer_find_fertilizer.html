@@ -1,0 +1,116 @@
+{% include 'farmer_header.html' %}
+<center><h1>Find Fertilizer</h1></center>
+<form method="post" enctype="multipart/form-data">
+	<table align="center" border="0" class="table">
+		<tr style="height: 50px;">
+			
+			<td align="center">
+				<table border="1">
+					<tr>
+						<td align="center">Moisture: &nbsp; </td>
+						<td><input type="text" placeholder="moisture percentage" class="form-control" name="moisture"></td>
+					
+						<td align="center">Humidity: &nbsp; </td>
+						<td><input type="text" placeholder="humidity value" class="form-control" name="humidity"></td>
+					
+						<td align="center">Temperature: &nbsp; </td>
+						<td><input type="text" placeholder="temperature value" class="form-control" name="temperature"></td>
+					</tr>
+					<tr>
+						<td align="center">Nitrogen: &nbsp; </td>
+						<td><input type="text" placeholder="value in mg/kg" class="form-control" name="nitrogen"></td>
+					
+						<td align="center">Phosphorus: &nbsp; </td>
+						<td><input type="text"  placeholder="value in mg/kg" class="form-control" name="phosphorous"></td>
+				
+						<td align="center">Potassium: &nbsp; </td>
+						<td><input type="text"  placeholder="value in mg/kg" class="form-control" name="potassium"></td>
+					</tr>
+					<tr>
+						<td align="center">Soil Type: &nbsp; </td>
+						<td>
+							<select name="soil_type" class="form-control">
+								{% for row in data['soils'] %}
+								<option>{{row['soil_type']}}</option>
+								{% endfor %}
+							</select>
+						</td>
+				
+						<td align="center">Crop Type: &nbsp; </td>
+						<td>
+							<select name="crop_type" class="form-control">
+								{% for row in data['crops'] %}
+								<option>{{row['crop_type']}}</option>
+								{% endfor %}
+							</select>
+						</td>
+					
+						<td colspan="2" align="center">
+							<input type="submit" name="btn_predict_value" class="btn btn-primary" value="Find Fertilizer">
+						</td>
+					</tr>
+				
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding-top: 60px;">
+				<table class="table" border="1" width="70%">
+					<tr>
+						<th>Soil Name</th>
+						<th>Crop Name</th>
+						<th>Fertilizer Name</th>
+						<th>Purchase</th>
+					</tr>
+					
+					{% for row in data['result'] %}
+					{%if(row['fertilizer']=="Urea") %}
+					<tr>
+						<td>{{row['soil_type']}}</td>
+						<td>{{row['crop_type']}}</td>
+						<td><h3><b>{{row['fertilizer']}}</b></h3></td>
+						<td><a href="https://www.amazon.in/Urea-Fertilizers-Nitrogen-Fertilizer-Application/dp/B09TLGR6BV/ref=asc_df_B09TLGR6BV/?tag=googleshopdes-21&linkCode=df0&hvadid=397082356559&hvpos=&hvnetw=g&hvrand=4617007864561176503&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1007777&hvtargid=pla-1641046465390&psc=1&ext_vrnc=hi">Buy Now</a></td>
+					</tr>   
+					{% elif(row['fertilizer']=="DAP") %}
+					<tr>
+						<td>{{row['soil_type']}}</td>
+						<td>{{row['crop_type']}}</td>
+						<td><h3><b>{{row['fertilizer']}}</b></h3></td>
+						<td><a href="https://www.amazon.in/Unitedlys%C2%AE-Fertilizer-Plants-380-Phosphate-Fertilizers/dp/B09RB898BV/ref=sr_1_3_sspa?adgrpid=58351178349&ext_vrnc=hi&gclid=CjwKCAjwh-CVBhB8EiwAjFEPGQbyqQN6UBPVDFLD0cFvDSEq9VYiykqEYjrlJeNVM6Tlz4RzmQImahoCH0EQAvD_BwE&hvadid=590386545312&hvdev=c&hvlocphy=1007777&hvnetw=g&hvqmt=e&hvrand=10564091951892243177&hvtargid=kwd-454166329378&hydadcr=1570_2217149&keywords=dap+fertilizer+online&qid=1656310036&sr=8-3-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyWEdYUlU4SDRNM0xOJmVuY3J5cHRlZElkPUEwMDMzMTY4SFVOVUdDTTI0SDlUJmVuY3J5cHRlZEFkSWQ9QTAxNjQ0OTlaVVlCSUJPV05DM1Imd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl">Buy Now</a></td>
+					</tr>
+					{% elif(row['fertilizer']=="14-35-14") %}
+					<tr>
+						<td>{{row['soil_type']}}</td>
+						<td>{{row['crop_type']}}</td>
+						<td><h3><b>{{row['fertilizer']}}</b></h3></td>
+						<td><a href="https://www.amazon.in/Unitedlys%C2%AE-Fertilizer-Plants-380-Phosphate-Fertilizers/dp/B09RB898BV/ref=sr_1_3_sspa?adgrpid=58351178349&ext_vrnc=hi&gclid=CjwKCAjwh-CVBhB8EiwAjFEPGQbyqQN6UBPVDFLD0cFvDSEq9VYiykqEYjrlJeNVM6Tlz4RzmQImahoCH0EQAvD_BwE&hvadid=590386545312&hvdev=c&hvlocphy=1007777&hvnetw=g&hvqmt=e&hvrand=10564091951892243177&hvtargid=kwd-454166329378&hydadcr=1570_2217149&keywords=dap+fertilizer+online&qid=1656310036&sr=8-3-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyWEdYUlU4SDRNM0xOJmVuY3J5cHRlZElkPUEwMDMzMTY4SFVOVUdDTTI0SDlUJmVuY3J5cHRlZEFkSWQ9QTAxNjQ0OTlaVVlCSUJPV05DM1Imd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl">Buy Now</a></td>
+					</tr>
+					{% elif(row['fertilizer']=="28-28") %}
+					<tr>
+						<td>{{row['soil_type']}}</td>
+						<td>{{row['crop_type']}}</td>
+						<td><h3><b>{{row['fertilizer']}}</b></h3></td>
+						<td><a href="https://www.amazon.in/Unitedlys%C2%AE-Fertilizer-Plants-380-Phosphate-Fertilizers/dp/B09RB898BV/ref=sr_1_3_sspa?adgrpid=58351178349&ext_vrnc=hi&gclid=CjwKCAjwh-CVBhB8EiwAjFEPGQbyqQN6UBPVDFLD0cFvDSEq9VYiykqEYjrlJeNVM6Tlz4RzmQImahoCH0EQAvD_BwE&hvadid=590386545312&hvdev=c&hvlocphy=1007777&hvnetw=g&hvqmt=e&hvrand=10564091951892243177&hvtargid=kwd-454166329378&hydadcr=1570_2217149&keywords=dap+fertilizer+online&qid=1656310036&sr=8-3-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyWEdYUlU4SDRNM0xOJmVuY3J5cHRlZElkPUEwMDMzMTY4SFVOVUdDTTI0SDlUJmVuY3J5cHRlZEFkSWQ9QTAxNjQ0OTlaVVlCSUJPV05DM1Imd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl">Buy Now</a></td>
+					</tr>
+					{% elif(row['fertilizer']=="17-17-17") %}
+					<tr>
+						<td>{{row['soil_type']}}</td>
+						<td>{{row['crop_type']}}</td>
+						<td><h3><b>{{row['fertilizer']}}</b></h3></td>
+						<td><a href="https://www.amazon.in/Unitedlys%C2%AE-Fertilizer-Plants-380-Phosphate-Fertilizers/dp/B09RB898BV/ref=sr_1_3_sspa?adgrpid=58351178349&ext_vrnc=hi&gclid=CjwKCAjwh-CVBhB8EiwAjFEPGQbyqQN6UBPVDFLD0cFvDSEq9VYiykqEYjrlJeNVM6Tlz4RzmQImahoCH0EQAvD_BwE&hvadid=590386545312&hvdev=c&hvlocphy=1007777&hvnetw=g&hvqmt=e&hvrand=10564091951892243177&hvtargid=kwd-454166329378&hydadcr=1570_2217149&keywords=dap+fertilizer+online&qid=1656310036&sr=8-3-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyWEdYUlU4SDRNM0xOJmVuY3J5cHRlZElkPUEwMDMzMTY4SFVOVUdDTTI0SDlUJmVuY3J5cHRlZEFkSWQ9QTAxNjQ0OTlaVVlCSUJPV05DM1Imd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl">Buy Now</a></td>
+					</tr>
+					{% elif(row['fertilizer']=="10-26-26") %}
+					<tr>
+						<td>{{row['soil_type']}}</td>
+						<td>{{row['crop_type']}}</td>
+						<td><h3><b>{{row['fertilizer']}}</b></h3></td>
+						<td><a href="https://www.amazon.in/Unitedlys%C2%AE-Fertilizer-Plants-380-Phosphate-Fertilizers/dp/B09RB898BV/ref=sr_1_3_sspa?adgrpid=58351178349&ext_vrnc=hi&gclid=CjwKCAjwh-CVBhB8EiwAjFEPGQbyqQN6UBPVDFLD0cFvDSEq9VYiykqEYjrlJeNVM6Tlz4RzmQImahoCH0EQAvD_BwE&hvadid=590386545312&hvdev=c&hvlocphy=1007777&hvnetw=g&hvqmt=e&hvrand=10564091951892243177&hvtargid=kwd-454166329378&hydadcr=1570_2217149&keywords=dap+fertilizer+online&qid=1656310036&sr=8-3-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyWEdYUlU4SDRNM0xOJmVuY3J5cHRlZElkPUEwMDMzMTY4SFVOVUdDTTI0SDlUJmVuY3J5cHRlZEFkSWQ9QTAxNjQ0OTlaVVlCSUJPV05DM1Imd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl">Buy Now</a></td>
+					</tr>
+					{% endif %}
+					{% endfor %}
+				</table>
+			</td>
+		</tr>
+		
+	</table>
+</form>
